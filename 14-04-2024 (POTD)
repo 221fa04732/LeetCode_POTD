@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int ans=0;
+    void solve(TreeNode* root,int flag)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        if(root->left==NULL && root->right==NULL && flag)
+        {
+            ans+=root->val;
+        }
+        solve(root->left,1);
+        solve(root->right,0);
+    }
+    int sumOfLeftLeaves(TreeNode* root) 
+    {
+        solve(root,0);
+        return ans;
+    }
+};
