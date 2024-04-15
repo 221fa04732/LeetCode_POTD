@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void solve(TreeNode* root,int num,vector<int>&ans)
+    {
+        if(root==NULL)
+            return;
+        num=(num*10+(root->val));
+        if(root->left==NULL && root->right==NULL)
+            ans.push_back(num);
+        solve(root->left,num,ans);
+        solve(root->right,num,ans);
+    }
+    int sumNumbers(TreeNode* root) 
+    {
+        int answer=0;
+        vector<int>ans;
+        solve(root,0,ans);
+        for(int i=0;i<ans.size();i++)
+        {
+            answer+=ans[i];
+        }
+        return answer;
+    }
+};
