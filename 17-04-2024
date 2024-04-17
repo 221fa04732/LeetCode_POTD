@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void solve(TreeNode* root,vector<string>&ans,vector<char>&temp,string s)
+    {
+        s+=(temp[(root->val)]);
+        if(root->left==NULL && root->right==NULL)
+        {
+            reverse(s.begin(),s.end());
+            ans.push_back(s);
+        }
+        if(root->left)
+            solve(root->left,ans,temp,s);
+        if(root->right)
+            solve(root->right,ans,temp,s);
+    }
+    string smallestFromLeaf(TreeNode* root) 
+    {
+        vector<char>temp={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
+        'p','q','r','s','t','u','v','w','x','y','z'};
+        vector<string>ans;
+        solve(root,ans,temp,"");
+        sort(ans.begin(),ans.end());
+        return ans[0];
+    }
+};
