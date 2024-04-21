@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int numberOfSpecialChars(string word) 
+    {
+        int count=0;
+        int arr1[26]={0};
+        int arr2[26]={0};
+        for(int i=0;i<word.size();i++)
+        {
+            if(word[i]>='a' && word[i]<='z')
+            {
+                if(arr1[word[i]-'a']!=-1)
+                    arr1[word[i]-'a']++;
+                if(arr2[word[i]-'a']>0)
+                    arr1[word[i]-'a']=-1;
+            }
+            else 
+            {
+                arr2[word[i]-'A']++;
+            }
+        }
+        
+        for(int i=0;i<26;i++)
+        {
+            if(arr1[i]>0 && arr2[i]>0)
+                count++;
+        }
+        return count;
+    
+    }
+};
