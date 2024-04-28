@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int minimumAddedInteger(vector<int>& nums1, vector<int>& nums2) 
+    {
+        int answer=INT_MAX;
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        for(int i=0;i<nums1.size();i++)
+        {
+            for(int j=i+1;j<nums1.size();j++)
+            {
+                vector<int>ans;
+                int k=0,l=0;
+                while(k<nums1.size())
+                {
+                    if(k!=i && k!=j)
+                    {
+                        ans.push_back(nums2[l]-nums1[k]);
+                        l++;
+                    }
+                    k++;
+                }
+                int c=0;
+                for(int z=1;z<ans.size();z++)
+                {
+                    if(ans[z-1]!=ans[z])
+                    {
+                        c++;
+                    }
+                }
+                if(c==0)
+                {
+                    answer=min(ans[0],answer);
+                }
+            }
+        }
+        return answer;
+    }
+};
