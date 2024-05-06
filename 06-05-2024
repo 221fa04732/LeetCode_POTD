@@ -1,0 +1,29 @@
+class Solution {
+public:
+    ListNode* removeNodes(ListNode* head) 
+    {
+        ListNode* prev=NULL;
+        ListNode* curr=NULL;
+        while(head)
+        {
+            curr=head->next;
+            head->next=prev;
+            prev=head;
+            head=curr;
+        }
+        int max=0;
+        curr=NULL;
+        while(prev)
+        {
+            if(max<=prev->val)
+            {
+                max=prev->val;
+                ListNode* n=new ListNode(prev->val);
+                n->next=curr;
+                curr=n;
+            }
+            prev=prev->next;
+        }
+        return curr;
+    }
+};
