@@ -1,0 +1,41 @@
+class Solution {
+public:
+    ListNode* doubleIt(ListNode* head) 
+    {
+        ListNode* temp=NULL;
+        ListNode* prev=NULL;
+        ListNode* curr=NULL;
+        while(head)
+        {
+            curr=head->next;
+            head->next=prev;
+            prev=head;
+            head=curr;
+        }
+        int carry=0;
+        head=prev;
+        while(prev)
+        {
+            int x=(prev->val)*2+carry;
+            prev->val=x%10;
+            carry=x/10;
+            temp=prev;
+            prev=prev->next;
+        }
+        if(carry)
+        {
+            ListNode* n=new ListNode(carry);
+            temp->next=n;
+        }
+        prev=NULL;
+        curr=NULL;
+        while(head)
+        {
+            curr=head->next;
+            head->next=prev;
+            prev=head;
+            head=curr;
+        }
+        return prev;
+    }
+};
