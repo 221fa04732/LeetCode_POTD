@@ -1,0 +1,18 @@
+class Solution {
+public:
+    long long maximumHappinessSum(vector<int>& happiness, int k) 
+    {
+        long long ans=0;
+        sort(happiness.begin(),happiness.end(),greater<int>());
+        int i=0;
+        while(i<happiness.size() && k--)
+        {
+            if(happiness[i]-i >0)
+            {
+                ans+=(happiness[i]-i);
+            }
+            i++;
+        }
+        return ans;
+    }
+};
