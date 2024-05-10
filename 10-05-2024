@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> kthSmallestPrimeFraction(vector<int>& arr, int k) 
+    {
+        vector<vector<double>>ans;
+        for(int i=0;i<arr.size();i++)
+        {
+            for(int j=i+1;j<arr.size();j++)
+            {
+                ans.push_back({(double)arr[i]/arr[j],(double)arr[i],(double)arr[j]});
+            }
+        }
+        sort(ans.begin(),ans.end());
+        return {(int)ans[k-1][1],(int)ans[k-1][2]};
+    }
+};
