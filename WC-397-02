@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int maximumEnergy(vector<int>& energy, int k) 
+    {
+        if(energy.size()<=k)
+        {
+            return *max_element(energy.begin(),energy.end());
+        }
+        vector<int>ans;
+        vector<int>temp;
+        int i=energy.size()-1;
+        while(k--)
+        {
+            temp.push_back(energy[i]);
+            i--;
+        }
+        for(int j=i;j>=0;j--)
+        {
+            int x=temp[0];
+            temp.erase(temp.begin());
+            temp.push_back(energy[j]+x);
+            ans.push_back(x);
+        }
+        int q=*max_element(ans.begin(),ans.end());
+        int w=*max_element(temp.begin(),temp.end());
+        int answer=max(q,w);
+        return answer;
+        
+    }
+};
