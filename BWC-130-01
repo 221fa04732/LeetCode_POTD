@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool satisfiesConditions(vector<vector<int>>& grid) 
+    {
+        for(int i=1;i<grid[0].size();i++)
+        {
+            if(grid[0][i]==grid[0][i-1])
+            {
+                return false;
+            }
+        }
+        for(int i=1;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(grid[0][j]!=grid[i][j])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
